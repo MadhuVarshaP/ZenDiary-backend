@@ -6,10 +6,12 @@ const protect = async (req, res, next) => {
   if (!token) return res.status(401).json({ message: 'No token provided' });
 
   try {
+    // Verify token and attach user to request
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = await User.findById(decoded.id).select('-password');
     next();
-  } catch {
+  } catch (error) {
+    console.error('Error verifying token:', error);
     res.status(401).json({ message: 'Invalid token' });
   }
 };
