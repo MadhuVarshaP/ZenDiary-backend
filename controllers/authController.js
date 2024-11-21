@@ -3,7 +3,16 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 // Function to generate JWT token
-const generateToken = (id) => jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1d' });
+const generateToken = (user) =>
+  jwt.sign(
+    {
+      id: user._id,
+      email: user.email,
+      username: user.username,
+    },
+    process.env.JWT_SECRET,
+    { expiresIn: "1d" }
+  );
 
 // Register a new user
 exports.registerUser = async (req, res) => {

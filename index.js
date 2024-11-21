@@ -5,6 +5,7 @@ const connectDB = require('./config/db.js');
 const authRoutes = require('./routes/authRoutes.js');
 const affirmationRoutes = require('./routes/affirmationRoutes.js');
 const moodRoutes = require('./routes/moodRoutes.js'); // Import moodRoutes
+const journalRoutes = require('./routes/journalRoutes.js')
 
 dotenv.config();
 connectDB();
@@ -20,6 +21,7 @@ app.use(cors());
 app.use('/api/auth', authRoutes);
 app.use('/api/affirmations', affirmationRoutes);
 app.use('/api/moods', moodRoutes);  
+app.use('/api/journal', journalRoutes);
 
 const PORT = process.env.PORT || 5000;
 

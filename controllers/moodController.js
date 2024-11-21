@@ -1,9 +1,9 @@
-const Mood = require("../models/Mood"); // Assuming you're using Mongoose
+const Mood = require("../models/Mood"); 
 
 // Controller to get mood data for the user
 exports.getMoodData = async (req, res) => {
   try {
-    const userId = req.user.id; // Get userId from middleware
+    const userId = req.user.id;
     const moodData = await Mood.find({ userId });
     res.status(200).json(moodData);
   } catch (err) {
@@ -17,13 +17,12 @@ exports.saveMoodData = async (req, res) => {
   try {
     const { date, mood } = req.body;
 
-    // Validate inputs
     if (!date || !mood) {
       return res.status(400).json({ message: 'Date and mood are required' });
     }
 
-    const userId = req.user.id; // Get userId from middleware
-    const newMood = new Mood({ userId, date, mood }); // Include userId
+    const userId = req.user.id; 
+    const newMood = new Mood({ userId, date, mood }); 
     await newMood.save();
 
     res.status(201).json({ message: 'Mood data saved successfully', data: newMood });
