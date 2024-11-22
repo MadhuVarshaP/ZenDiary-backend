@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" })); // For URL-encod
 
 app.use(
   cors({
-    origin: "https://zendiary.netlify.app/", 
+    origin: "https://zendiary.netlify.app", 
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
