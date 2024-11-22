@@ -17,7 +17,14 @@ app.use(express.json({ limit: "10mb" })); // Adjust the size as needed
 app.use(express.urlencoded({ extended: true, limit: "10mb" })); // For URL-encoded form data
 
 // app.use(express.urlencoded({ extended: true })); 
-app.use(cors());
+
+app.use(
+  cors({
+    origin: "https://zendiary.netlify.app/", 
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
+
 
 // Routes
 app.use('/api/auth', authRoutes);
