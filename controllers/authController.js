@@ -11,7 +11,7 @@ const generateToken = (user) =>
       username: user.username,
     },
     process.env.JWT_SECRET,
-    { expiresIn: "1d" }
+    { expiresIn: "10d" }
   );
 
 // Register a new user
