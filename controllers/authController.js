@@ -57,7 +57,7 @@ exports.loginUser = async (req, res) => {
 
     // Generate a token
     const token = generateToken(user._id);
-
+    console.log('Generated token:', token);
     res.status(200).json({
       token,
       user: {
