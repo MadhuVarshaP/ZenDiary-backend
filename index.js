@@ -16,12 +16,15 @@ const app = express();
 // Middleware
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
+
 app.use(
   cors({
-    origin: ["https://zendiary.netlify.app", "http://localhost:3000"], // Allow local testing
+    origin: "https://zendiary.netlify.app", // Allow Netlify
     methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true, // If you need cookies or authentication
   })
 );
+
 
 // Routes
 app.use('/api/auth', authRoutes);
