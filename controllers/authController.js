@@ -26,7 +26,7 @@ exports.registerUser = async (req, res) => {
     // Create new user
     // const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({ username, email, password });
-
+// console.log(password)
     // Generate a token
     const token = generateToken(user._id);
 
@@ -48,7 +48,7 @@ exports.registerUser = async (req, res) => {
 exports.loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
-
+// console.log(password)
     // Find user by email
     const user = await User.findOne({ email });
     if (!user || password !== user.password) {
