@@ -24,8 +24,8 @@ exports.registerUser = async (req, res) => {
     if (userExists) return res.status(400).json({ message: 'User already exists' });
 
     // Create new user
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await User.create({ username, email, password: hashedPassword });
+    // const hashedPassword = await bcrypt.hash(password, 10);
+    const user = await User.create({ username, email, password });
 
     // Generate a token
     const token = generateToken(user._id);
@@ -51,7 +51,7 @@ exports.loginUser = async (req, res) => {
 
     // Find user by email
     const user = await User.findOne({ email });
-    if (!user || !(await bcrypt.compare(password, user.password))) {
+    if (!user || password !== user.password) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
